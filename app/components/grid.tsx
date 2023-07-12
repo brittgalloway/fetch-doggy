@@ -17,22 +17,22 @@ interface Dog {
 
 export const Grid = () => {
     const [dogIds, setDogIds] = useState<string[]>([]);
+    const [breed, setBreed] = useState<string>();
     const [nextPage, setNextPage] = useState<string>('');
     const [prevPage, setPrevPage] = useState<string>('');
-    const [queryParams, setQueryParams] = useState<string>('/dogs/search');
+    const [queryParams, setQueryParams] = useState<string>('');
     const [order, setOrder] = useState<string>('asc');
     useEffect(() => {
         const fetchIds = async () => {
-            const $searchBar = document.querySelector('input[name=searchBar]')
-            const breedResults:any=  $searchBar?.getAttribute('value') !== undefined ? $searchBar?.getAttribute('value') : '';
             const getOptions= {
                 method: 'GET',
-                url: `https://frontend-take-home-service.fetch.com${queryParams}`,
+                url: `https://frontend-take-home-service.fetch.com/dogs/search`,
                 headers: {'content-type': 'application/json'},
                 params: {
                     size: 12,
-                    breeds: [breedResults],
+                    breeds: [breed],
                     sort: `breed:${order}`,
+                    from: queryParams
                 },
                 withCredentials: true,
             }
@@ -48,7 +48,7 @@ export const Grid = () => {
                 });
         }
         fetchIds();
-    }, [queryParams, order])
+    }, [queryParams, order, breed])
     const search:string[] = dogIds;
     const postOptions = {
         method: 'POST',
@@ -58,26 +58,30 @@ export const Grid = () => {
         withCredentials: true,
     }
     const fetcher = async () => axios.request(postOptions).then(res => res.data);
-    const { data, error } = useSWR('dogs', fetcher);
+    const { data, error } = useSWR('dogs', fetcher, { refreshInterval: 1000 });
     if (error) error.message;
     
     return data !== undefined ? ( 
         <>
             <div className='sortInputs flex'>
-                <Search/>
+                <Search/><button className='search-btn bg-gray-300 text-gray-700 font-semibold rounded-r py-2 px-2' onClick={() => { 
+                    const $searchBar = document.querySelector('input[name=searchBar]')
+                    const breedResults =  $searchBar?.getAttribute('value') !== undefined ? $searchBar?.getAttribute('value') : null;
+                    breedResults !== null ? setBreed(breedResults) : null;
+                }}>Search</button>
                 <div className='dropdown flex'>
                     <button className='dropdown-btn bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center'>
-                        <span className="sort">Sort</span>
-                        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+                        <span className='sort'>Sort</span>
+                        <svg className='fill-current h-4 w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z'/> </svg>
                     </button>
-                    <ul className="dropdown-menu hidden absolute text-gray-700 pt-1">
-                        <li className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                    <ul className='dropdown-menu hidden absolute text-gray-700 pt-1'>
+                        <li className='rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap'
                             onClick={() => {
                             order === 'desc' ? setOrder('asc') : order}} 
                             >
                             Ascend
                         </li>
-                        <li className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                        <li className='rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap'
                             onClick={() => {
                             order === 'asc' ? setOrder('desc') : order}}
                             >
@@ -90,16 +94,16 @@ export const Grid = () => {
                 {data.map((dog: Dog) => (
                     <div className='dog-container' key={dog.id}>
                         <Link href={`/dogs/${dog.id}`}>
-                            <div className="max-w-sm rounded overflow-hidden shadow-lg border-yellow-600 border-solid border-x-2">
-                                <Image className="w-full" 
+                            <div className='max-w-sm rounded overflow-hidden shadow-lg border-yellow-600 border-solid border-x-2'>
+                                <Image className='w-full' 
                                     width={300}
                                     height={300}
                                     src={dog.img} 
                                     alt={`Photo of ${dog.name}`}/>
-                                <div className="px-6 py-4 bg-white">
-                                    <div className="font-bold text-xl mb-2">{dog.name}</div>
-                                    <ul className="text-gray-700 text-base">
-                                        <li>{dog.breed}</li>
+                                <div className='px-6 py-4 bg-white'>
+                                    <div className='font-bold text-xl mb-2'>{dog.name}</div>
+                                    <ul className='text-gray-700 text-base'>
+                                        <li className='font-bold'>{dog.breed}</li>
                                         <li>Age: {dog.age}</li>
                                         <li>Zipcode: {dog.zip_code}</li>
                                     </ul>
@@ -108,15 +112,17 @@ export const Grid = () => {
                         </Link>
                     </div>
                 ))}
-                <div className="pagination flex">
-                    <button name="previous" onClick={(event) => {
+                <div className='pagination flex'>
+                    <button name='previous' onClick={(event) => {
                         event.preventDefault();
-                        prevPage !== undefined ? setQueryParams(`${prevPage}`) : queryParams;
-                    }} className='bg-yellow-600 text-purple-50'>Previous</button>
-                    <button name="next" onClick={(event) => {
+                        //The regex finds all numbers/digits that are at the end of the sring
+                        prevPage !== undefined ? setQueryParams(`${prevPage.match(/\d+$/g)}`) : queryParams;
+                    }} className='bg-yellow-600 rounded text-purple-50'>Previous</button>
+                    <button name='next' onClick={(event) => {
                         event.preventDefault();
-                        nextPage !== undefined ? setQueryParams(`${nextPage}`) : queryParams;
-                    }} className='bg-yellow-600 text-purple-50'>Next</button>
+                        //The regex finds all numbers/digits that are at the end of the sring
+                        nextPage !== undefined ? setQueryParams(`${nextPage.match(/\d+$/g)}`) : queryParams;
+                    }} className='bg-yellow-600 rounded text-purple-50'>Next</button>
                 </div>
             </section>
         </>

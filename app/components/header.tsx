@@ -29,7 +29,7 @@ export const Header = () => {
               <h1 className='text-yellow-600 font-black'>Fetch Doggy</h1>
             </span>
             </Link>
-            <button type='button' className='bg-yellow-600 text-purple-50' onClick={handleSubmit}>
+            <button type='button' className='bg-yellow-600 text-purple-50 rounded' onClick={handleSubmit}>
               Log out
             </button>
         </header>

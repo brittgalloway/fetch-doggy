@@ -11,7 +11,7 @@ export const Footer = () => {
                 <span className='font-black text-stone-700'>Brittney Galloway</span>
             </Link>
             <span className='text-stone-700'>2023</span>
-            <span className='text-stone-700'>Made with NextJS</span>
+            <span className='text-stone-700'>Made with Next.js</span>
         </footer>
     )
   }

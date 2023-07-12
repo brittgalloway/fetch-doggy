@@ -10,7 +10,7 @@ export default function NotFound() {
           <h2 className='font-medium'>Not Found</h2>
           <p>Could not find requested resource</p>
           <p>
-            View <Link href="/dogs">all dogs</Link>
+            View <Link href='/dogs'>all dogs</Link>
           </p>
         </main>
       <Footer/>

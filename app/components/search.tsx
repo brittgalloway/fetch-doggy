@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useState } from 'react';
 
 export const Search = () => {
-    const [breed, setBreed] = useState([]);
+    const [breed, setBreed] = useState<string>('');
     const getOptions= {
         url: `https://frontend-take-home-service.fetch.com/dogs/breeds`,
         headers: {'content-type': 'application/json'},
@@ -22,8 +22,8 @@ export const Search = () => {
 
     return data !== undefined ? (
         <div className='searchbar'>
-            <input name='searchBar' className='rounded' id='searchbar' value={breed} type='search' list='breed-options' onChange={handleSearch} placeholder='Search Breeds...'/>
-            <datalist id="breed-options">
+            <input name='searchBar' className='rounded-l' id='searchbar' value={breed} type='search' list='breed-options' onChange={handleSearch} placeholder='Search Breeds...'/>
+            <datalist id='breed-options'>
                 {data.map((breed:string) => (
                     <option key={breed} value={breed}></option>
                 ))}   

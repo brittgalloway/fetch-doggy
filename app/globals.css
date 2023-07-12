@@ -27,6 +27,7 @@ body {
     rgb(var(--background-start-rgb));
 }
 main {
+  margin-bottom: 40px;
   min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
 }
 h1 {
@@ -80,7 +81,6 @@ span > h1 {
 }
 button[type=button] {
   padding: 10px 20px;
-  border-radius: 10px;
   margin: 20px 0;
 }
 button[type=submit] {
@@ -88,7 +88,6 @@ button[type=submit] {
   justify-content: center;
   width: 50%;
   padding: 10px 20px;
-  border-radius: 10px;
   margin: 20px auto;
 }
 input:focus, 
@@ -117,12 +116,15 @@ img {
 .pagination > button {
   min-width: 105px;
   padding: 10px 20px;
-  border-radius: 10px;
   margin: 20px;
 }
 input#searchbar {
   padding:10px 20px;
   width: 350px;
+}
+.search-btn{
+  align-items: flex-start;
+  height: 44px;
   margin-right: 50px;
 }
 .wrapper{
@@ -140,16 +142,11 @@ input#searchbar {
   height: auto;
   margin: 20px;
 }
-.wrapper > section{
-  justify-content: unset;
+.wrapper img {
+  margin:20px;
 }
-dl {
-  width: 100%;
-  margin: 20px;
-}
-dt, dd {
-  width: 50%;
-  display: inline-block;
+.wrapper p {
+  margin: 20px 10px;
 }
 .dropdown {
   justify-content: flex-end;

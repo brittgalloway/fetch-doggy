@@ -39,7 +39,7 @@ export const LoginForm = () => {
         <input type='text' id='name' name='name' required/>
         <label className='text-stone-700' htmlFor='email'>Email:</label>
         <input type='email' id='email' name='email' required/>
-        <button className='bg-yellow-600 text-purple-50' type='submit'>Submit</button>
+        <button className='bg-yellow-600 rounded text-purple-50' type='submit'>Submit</button>
       </form>
     )
 }

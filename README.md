@@ -2,16 +2,20 @@
 
 This is a website to help someone search through a database of shelter dogs to rescue.
 
-> Note this is dummy data, there is no way to reach the dog in these listings.
-> The dogs can be searched by breed or shifted through.
+> Note this is dummy data, there is no way to reach the dogs in these listings.
 
-This projected needed routing and a quick deployment so Next.js was a good JS framework to use for ist built in intergrations with Typescript, Tailwind, and Vercel.
+This project needed routing and a quick deployment so Next.js was a good JS framework to use for its built in intergrations with Typescript, Tailwind, and Vercel.
 
-Next.js recently updated and changed it's entire struture. As such there were challenges with reaching the dog api with the correct authorizations and the actual api folder and Route Handlers were not used. This caused a few components to be `client` when they should have be `server`.
+Next.js recently updated and changed it's entire structure. As such, there were challenges with reaching the dog api with the correct authorizations so the actual api folder and Route Handlers were not used. This caused a few components to be `client` when they should have be `server`.
 This was disappointing and something I plan to keep working on to understand for the future.
 For now, only the components and page folders were used.
 
-Currently, the home page is a form with a `name` and `email` field. Both are required and the email does need a basic email format to successfully submit the form.
+Currently, the `home page` is a form with a `name` and `email` field. Both are required and the email does need a basic email format to successfully submit the form.
+
+The `/dogs` route displays all the dogs alphabetically by breed. You can use the `sort` drop down to switch between ascending and descending order.
+You can use the `search` bar to search for a specific breed. It will filter the results as you type. You can also use the `next` and `previous` buttons at the bottom to manually go through the dogs. Click on a dog you like to learn more about it.
+
+The `/dogs/[id]` route shows the spefic dog you clicked on. It displays the full doggy photo, name, breed, age, and location/zipcode.
 
 ## Getting Started
 
@@ -48,5 +52,3 @@ A future version of this will likely be be done entirely with SASS/SCSS.
 ## Deployment
 
 Lastly, this is a live app deployed by Vercel. To update the delpoyment, push to the `main` branch.
-
-> Example of the selected dog's url path /dogs/U3GFTIcBOvEgQ5OCx8A2

@@ -28,23 +28,17 @@ export default function DogsPage({params} : { params: {id:string}}) {
         <main className='flex flex-col items-center'>
           <div className='wrapper rounded border-yellow-600 border-solid border-x-2 shadow-lg'>
             <h1 className='font-medium text-5xl text-yellow-600'>Meet {dog.name}! </h1>
-            <section className='flex'>
+            <div className='flex'>
               <Image 
                 className='rounded shadow-lg'
                   src= {dog.img}
                   alt={`Photo of ${dog.name}`}
-                  width={500}
-                  height={500}
+                  width={300}
+                  height={300}
               />
-              <dl>
-                  <dt className='text-stone-700'>Breed: </dt>
-                  <dd className='font-medium text-3xl text-stone-700'>{dog.breed}</dd>
-                  <dt className='text-stone-700'>Age: </dt>
-                  <dd className='font-medium text-3xl text-stone-700'>{dog.age}</dd>
-                  <dt className='text-stone-700'>Zip-code: </dt>
-                  <dd className='font-medium text-3xl text-stone-700'>{dog.zip_code}</dd>
-              </dl>
-            </section>
+              <p>They are a <span className='font-bold underline decoration-yellow-600 decoration-2 text-stone-700'>{dog.age}</span> year old <span className='font-bold underline decoration-yellow-600 decoration-2 text-stone-700'>{dog.breed}</span>. You can find them at zip-code <span className='font-bold underline decoration-yellow-600 decoration-2 text-stone-700'>{dog.zip_code}</span>.</p>
+            </div>
+              <h2 className='text-center'> Thanks for caring!</h2>
           </div>
         </main>
         <Footer/>
