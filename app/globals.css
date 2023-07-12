@@ -17,6 +17,7 @@
   }
 }
 
+/* GENERAL LAYOUT STYLES */
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -27,8 +28,11 @@ body {
     rgb(var(--background-start-rgb));
 }
 main {
+  padding: 6rem;
   margin-bottom: 40px;
   min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
+  justify-content: center;
+  align-items: center;
 }
 h1 {
   font-size: 2rem;
@@ -49,10 +53,21 @@ h2 {
   border-radius: 50%;
   z-index: 1;
 }
-.head{
-  width: 100px;
-  height: 50px;
+header {
+  display: flex;
+  justify-content: space-around;
+  height: var(--header-height);
 }
+footer{
+  height: var(--footer-height);
+  justify-content: space-evenly;
+}
+section {
+  max-width: 75%;
+  justify-content: center;
+  margin-top: 50px;
+}
+/* LOGIN FORM */
 form {
   width: 560px;
   background: white;
@@ -70,11 +85,6 @@ form {
 label {
   display: block;
   margin-top: 10px;
-}
-header {
-  display: flex;
-  justify-content: space-around;
-  height: var(--header-height);
 }
 span > h1 {
   margin: 20px 0;
@@ -95,11 +105,7 @@ input:active,
 input:-internal-autofill-selected {
   background: white;
 }
-section {
-  max-width: 75%;
-  justify-content: center;
-  margin-top: 50px;
-}
+/* DOG LIST STYLES */
 .dog-container {
   width: 300px;
   height: auto;
@@ -109,6 +115,7 @@ img {
   height: 300px;
   object-fit: cover;
 }
+/* PAGINATION */
 .pagination {
   width: 100%;
   justify-content: center;
@@ -118,15 +125,7 @@ img {
   padding: 10px 20px;
   margin: 20px;
 }
-input#searchbar {
-  padding:10px 20px;
-  width: 350px;
-}
-.search-btn{
-  align-items: flex-start;
-  height: 44px;
-  margin-right: 50px;
-}
+/* WRAPPER FOR [ID] PAGE */
 .wrapper{
   margin: 50px;
   padding: 50px;
@@ -137,16 +136,20 @@ input#searchbar {
   margin: 40px 0;
   text-align: center;
 }
-.wrapper > section > img {
+.wrapper > div > img {
   width: 500px;
   height: auto;
   margin: 20px;
 }
-.wrapper img {
-  margin:20px;
-}
+
 .wrapper p {
   margin: 20px 10px;
+}
+/* SORT ORDER */
+.sortInputs {
+  width: 100%;
+  margin: 50px;
+  justify-content: center;
 }
 .dropdown {
   justify-content: flex-end;
@@ -163,12 +166,77 @@ input#searchbar {
 .sort {
   margin-right: 18px;
 }
-.sortInputs {
-  width: 100%;
-  margin: 50px;
-  justify-content: center;
+/* SEARCH BAR */
+input#searchbar {
+  padding:10px 20px;
+  width: 350px;
 }
-footer{
-  height: var(--footer-height);
-  justify-content: space-evenly;
+.search-btn{
+  align-items: flex-start;
+  height: 44px;
+  margin-right: 50px;
+}
+
+
+/* Media Queries */
+
+@media (max-width: 1024px) {
+  main {
+    padding: 1rem;
+  }
+}
+@media (max-width: 768px) {
+
+  input#searchbar {
+    width: auto;
+  }
+  section {
+    max-width: 100%;
+  }
+}
+@media (max-width: 450px) {
+  form {
+    width: 100%;
+  }
+  .sortInputs {
+    flex-wrap: wrap;
+    margin: 20px;
+  }
+  input#searchbar {
+    margin-bottom: 20px;
+  }
+  .search-btn {
+    margin-right: 0;
+  }
+  .dropdown {
+    margin-top: 45px;
+  }
+  section {
+    margin-top: 0;
+  }
+  .wrapper{
+    padding: 20px;
+    width: 100%;
+  }
+  .wrapper > h1{
+    margin: 20px 0;
+  }
+  .wrapper > div > img {
+    width: 100%;
+    min-width: 275px;
+    margin: 0;
+  }
+  .wrapper > div {
+    flex-direction: column;
+  }
+  .wrapper p {
+    margin: 20px 10px;
+  }
+  footer {
+    padding: 0 10px;
+  }
+  footer span {
+    min-width: 40px;
+  }
+  
 }
