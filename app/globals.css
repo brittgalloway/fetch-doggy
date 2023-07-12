@@ -204,6 +204,10 @@ input#searchbar {
   }
   input#searchbar {
     margin-bottom: 20px;
+    width: 100%;
+  }
+  .searchbar{
+    width: 75%;
   }
   .search-btn {
     margin-right: 0;
