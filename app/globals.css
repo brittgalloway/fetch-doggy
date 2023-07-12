@@ -1,13 +1,14 @@
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
 
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --border-color: #44403c;
+  --header-height: 90px;
+  --footer-height: 50px;
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -24,4 +25,153 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+main {
+  min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
+}
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+.title {
+  text-align: center;
+}
+.circular {
+  width: 200px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 50%;
+  z-index: 1;
+}
+.head{
+  width: 100px;
+  height: 50px;
+}
+form {
+  width: 560px;
+  background: white;
+  margin: 10px;
+  padding: 20px 40px;
+  border-radius: 10px;
+  position: relative;
+  bottom: 50px;
+}
+#name, #email {
+  border-bottom: solid 1px var(--border-color);
+  width: 100%;
+  padding-top: 10px;
+}
+label {
+  display: block;
+  margin-top: 10px;
+}
+header {
+  display: flex;
+  justify-content: space-around;
+  height: var(--header-height);
+}
+span > h1 {
+  margin: 20px 0;
+}
+button[type=button] {
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+button[type=submit] {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+}
+input:focus, 
+input:active,
+input:-internal-autofill-selected {
+  background: white;
+}
+section {
+  max-width: 75%;
+  justify-content: center;
+  margin-top: 50px;
+}
+.dog-container {
+  width: 300px;
+  height: auto;
+}
+img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+.pagination {
+  width: 100%;
+  justify-content: center;
+}
+.pagination > button {
+  min-width: 105px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 20px;
+}
+input#searchbar {
+  padding:10px 20px;
+  width: 350px;
+  margin-right: 50px;
+}
+.wrapper{
+  margin: 50px;
+  padding: 50px;
+  width: 50%;
+  background: white;
+}
+.wrapper > h1{
+  margin: 40px 0;
+  text-align: center;
+}
+.wrapper > section > img {
+  width: 500px;
+  height: auto;
+  margin: 20px;
+}
+.wrapper > section{
+  justify-content: unset;
+}
+dl {
+  width: 100%;
+  margin: 20px;
+}
+dt, dd {
+  width: 50%;
+  display: inline-block;
+}
+.dropdown {
+  justify-content: flex-end;
+  margin-top: 45px;
+}
+.dropdown:hover ul.dropdown-menu {
+  display: block;
+  cursor: pointer;
+}
+.dropdown > button {
+  position: relative;
+  bottom: 42px;
+}
+.sort {
+  margin-right: 18px;
+}
+.sortInputs {
+  width: 100%;
+  margin: 50px;
+  justify-content: center;
+}
+footer{
+  height: var(--footer-height);
+  justify-content: space-evenly;
 }
