@@ -1,34 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Fetch Doggy
+
+This is a website to help someone search through a database of shelter dogs to rescue.
+
+> Note this is dummy data, there is no way to reach the dog in these listings.
+> The dogs can be searched by breed or shifted through.
+
+This projected needed routing and a quick deployment so Next.js was a good JS framework to use for ist built in intergrations with Typescript, Tailwind, and Vercel.
+
+Next.js recently updated and changed it's entire struture. As such there were challenges with reaching the dog api with the correct authorizations and the actual api folder and Route Handlers were not used. This caused a few components to be `client` when they should have be `server`.
+This was disappointing and something I plan to keep working on to understand for the future.
+For now, only the components and page folders were used.
+
+Currently, the home page is a form with a `name` and `email` field. Both are required and the email does need a basic email format to successfully submit the form.
 
 ## Getting Started
+
+This app was created with [Next.js](https://nextjs.org/) 13. Be sure to install the lastest version.
+Node.js version 16.8 or later.
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 
 First, run the development server:
 
 ```bash
+npm install
+```
+
+then run
+
+```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+There are no passwords or secrets that you'll need to run this locally.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Routing
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+All api requests are made with Axios.
+[SWR]('https://swr.vercel.app/docs/getting-started') was also used to handle most of the Axios requests.
 
-## Learn More
+## Tailwind
 
-To learn more about Next.js, take a look at the following resources:
+Most of this app is made with regular CSS. Tailwind is used for colors, font sizes, flexbox, and box-shadows.
+A future version of this will likely be be done entirely with SASS/SCSS.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Lastly, this is a live app deployed by Vercel. To update the delpoyment, push to the `main` branch.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+> Example of the selected dog's url path /dogs/U3GFTIcBOvEgQ5OCx8A2
